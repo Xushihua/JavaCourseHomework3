@@ -13,4 +13,12 @@ public class ProcessUtil {
 				| ((src[0 + 3] & 0xFF) << 24));
 		return value;
 	}
+	
+	public static void ByteArrayToShortArray(byte[] b,short[] s){
+		int lengthB=b.length;
+		int lengthS=lengthB/2;
+		for(int i=0;i<lengthS;){
+			s[i]=(short)((b[i++]&0xFF)|((b[i++]&0xFF)<<8));
+		}
+	}
 }

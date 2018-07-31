@@ -12,7 +12,8 @@ public class PCMTest {
 		byte[] numChannels = new byte[2];
 		byte[] sampleRate = new byte[4];
 		byte[] bitsPerSample = new byte[2];
-		File file = new File("src/test/resources/test.wav");
+		byte[] subChunk2_size=new byte[4];
+		File file = new File("src/main/java/data/test.wav");
 		FileInputStream stream = null;
 		try {
 			stream = new FileInputStream(file);
@@ -31,6 +32,9 @@ public class PCMTest {
 			stream.skip(6);
 			stream.read(bitsPerSample);
 			System.out.println("位深度：" + ProcessUtil.ByteLittleToShort(bitsPerSample));
+			stream.skip(6);
+			stream.read(subChunk2_size);
+			System.out.println("数据节点长度："+ProcessUtil.ByteLittleToInt(subChunk2_size));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
